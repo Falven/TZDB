@@ -1,0 +1,114 @@
+﻿<Window x:Class="NUIClockUpdater.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:p="clr-namespace:NUIClockUpdater.Properties"
+        Title="TimeZone Database Updater"
+        Left="{Binding Left, Source={x:Static p:Settings.Default}, Mode=TwoWay}"
+        Top="{Binding Top, Source={x:Static p:Settings.Default}, Mode=TwoWay}"
+        Width="{Binding Width, Source={x:Static p:Settings.Default}, Mode=TwoWay}"
+        MinHeight="325" MaxHeight="325" Height="325"
+        FocusManager.FocusedElement="{Binding ElementName=ConnectionStringTextBox}"
+        Name="this">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" Opacity="0.5">
+                <GradientStop Color="#e6e6e6" Offset="0.0"/>
+                <GradientStop Color="#f9f9f9" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <TextBlock Grid.ColumnSpan="2"
+                   Text="© Francisco Aguilera 2012"
+                   Foreground="LightGray"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="1"
+                   Text="Utility to update a Database with the latest Olson/Geonames Data."
+                   Grid.ColumnSpan="2"
+                   Style="{StaticResource WPTitleStyleTextBlock}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <Label Grid.Row="2"
+               Content="_Geonames Directory"
+               Target="{Binding ElementName=GeonamesBrowseTextBox}"
+               Style="{StaticResource WPStyleLabel}"
+               HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="3"
+                 Name="GeonamesBrowseTextBox"
+                 Style="{StaticResource WPStyleTextBox}"
+                 Text="{Binding GeonamesPath, Source={x:Static p:Settings.Default}, Mode=TwoWay}"/>
+        <Button Grid.Row="4"
+                Name="GeonamesBrowseButton"
+                Content="Browse"
+                Style="{StaticResource WPStyleButton}"
+                Click="OnGeonamesBrowseButtonClick"/>
+
+        <Label Grid.Row="2" Grid.Column="1"
+               Content="_Olson Directory"
+               Target="{Binding ElementName=OlsonBrowseTextBox}"
+               Style="{StaticResource WPStyleLabel}"
+               HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="3" Grid.Column="1"
+                 Name="OlsonBrowseTextBox"
+                 Style="{StaticResource WPStyleTextBox}"
+                 Text="{Binding OlsonPath, Source={x:Static p:Settings.Default}, Mode=TwoWay}"/>
+        <Button Grid.Row="4" Grid.Column="1"
+                Name="OlsonBrowseButton"
+                Content="Browse"
+                Style="{StaticResource WPStyleButton}"
+                Click="OnOlsonBrowseButtonClick"/>
+
+        <Label Grid.Row="6" Grid.ColumnSpan="2"
+               Content="_Connection String"
+               Target="{Binding ElementName=ConnectionStringTextBox}"
+               Style="{StaticResource WPStyleLabel}"
+               HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="7" Grid.ColumnSpan="2"
+                 x:Name="ConnectionStringTextBox"
+                 Style="{StaticResource WPStyleTextBox}"
+                 Text="{Binding ConnectionString, Mode=TwoWay}"/>
+
+        <Button Grid.Row="8"
+                Name="SubmitButton"
+                Content="_Submit"
+                Grid.ColumnSpan="2"
+                Style="{StaticResource WPStyleButton}"
+                Click="OnSubmitButtonClick"
+                IsDefault="True"/>
+
+        <TextBlock Grid.Row="9"
+                   Grid.ColumnSpan="2"
+                   Name="ProgressTextBlock"
+                   Style="{StaticResource WPStyleTextBlock}"
+                   Text="{Binding ProgressText}"
+                   Margin="6,0"/>
+
+        <ProgressBar Name="ProgressBar"
+                     Grid.Row="10"
+                     Grid.ColumnSpan="2"
+                     Height="24"
+                     Minimum="0"
+                     Maximum="{Binding ProgressMaximum}"
+                     Value="{Binding ProgressValue}"/>
+    </Grid>
+</Window>
