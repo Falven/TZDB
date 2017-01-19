@@ -3,7 +3,7 @@
 CREATE DATABASE World_Time;
 
 CREATE LOGIN Falven
-	WITH PASSWORD = 'Franramak1!',
+	WITH PASSWORD = '',
 	DEFAULT_DATABASE = World_Time;
 
 CREATE USER Falven;
@@ -40,7 +40,7 @@ GO
 ALTER LOGIN sa DISABLE;
 
 CREATE LOGIN Falven WITH
-	PASSWORD = 'Franramak1!',
+	PASSWORD = '',
 	DEFAULT_DATABASE = World_Time;
 USE World_Time;
 CREATE USER Falven
